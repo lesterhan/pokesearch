@@ -1,0 +1,48 @@
+plugins {
+	id 'org.jetbrains.kotlin.jvm' version '1.3.31'
+	id 'org.jetbrains.kotlin.plugin.jpa' version '1.3.31'
+	id 'org.jetbrains.kotlin.plugin.spring' version '1.3.31'
+	id "org.springframework.boot" version "2.1.4.RELEASE"
+}
+
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group = "com.vanillademo"
+version = "0.0.1-SNAPSHOT"
+java.sourceCompatibility = JavaVersion.VERSION_1_8
+
+repositories {
+	mavenCentral()
+	jcenter()
+}
+
+test {
+	useJUnitPlatform()
+
+}
+
+dependencies {
+	implementation "org.springframework.boot:spring-boot-starter"
+	implementation "org.jetbrains.kotlin:kotlin-reflect"
+	implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+	testImplementation "org.springframework.boot:spring-boot-starter-test"
+	testImplementation "org.amshove.kluent:kluent:1.49"
+	testImplementation "org.junit.jupiter:junit-jupiter-api:5.4.2"
+	testImplementation "org.junit.platform:junit-platform-commons:1.4.1"
+	testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.4.2"
+}
+
+sourceCompatibility = 1.8
+compileKotlin {
+	kotlinOptions {
+		freeCompilerArgs = ["-Xjsr305=strict"]
+		jvmTarget = "1.8"
+	}
+}
+compileTestKotlin {
+	kotlinOptions {
+		freeCompilerArgs = ["-Xjsr305=strict"]
+		jvmTarget = "1.8"
+	}
+}
