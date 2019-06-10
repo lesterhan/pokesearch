@@ -1,4 +1,4 @@
-package com.springdemo
+package com.pokesearch
 
 import org.junit.Test
 import org.junit.runner.RunWith

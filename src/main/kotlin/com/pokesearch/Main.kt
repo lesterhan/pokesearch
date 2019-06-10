@@ -1,7 +1,8 @@
 package com.pokesearch
 
 fun main() {
-    val pokemonService = PokemonService()
+    val pokemonRepository = PokemonRepository()
+    val pokemonService = PokemonService(pokemonRepository)
     while(true) {
         // pokemon center
         // todo: move search to a repo, Pokedex should only be data

@@ -1,17 +1,21 @@
 package com.pokesearch
 
-import org.amshove.kluent.shouldEqual
+import com.data.Pokemon
+import org.amshove.kluent.*
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
 internal class PokemonServiceTest {
-    private var pokemonService = PokemonService()
+    private var pokemonRepository = mock(PokemonRepository::class)
+    private val pokemonService = PokemonService(pokemonRepository)
 
     @Test
     fun returnExactPokemonWhenSearchingCorrectName() {
-        val result = pokemonService.search("pikachu")
-        result shouldEqual "Pokemon(id=25, name=Pikachu, type1=Electric, " +
-                "type2=, total=320, hp=35, attack=55, defence=40, spAttack=50, " +
-                "spDefence=50, speed=90, generation=1, legendary=false)"
+        val searchTerm = "charizard"
+
+        pokemonService.search(searchTerm)
+
+        Verify on pokemonRepository that pokemonRepository.findByName(searchTerm) was called
     }
 
     @Test
@@ -22,14 +26,12 @@ internal class PokemonServiceTest {
 
     @Test
     fun whenSearchingATypeReturnNumberOfMatchingTypeAndAllNamesOfTheType() {
-        val result = pokemonService.search("electric")
-        result shouldEqual "50 electric Pokémon\n[Pikachu, Raichu, Magnemite, " +
-                "Magneton, Voltorb, Electrode, Electabuzz, Jolteon, Zapdos, Chinchou, " +
-                "Lanturn, Pichu, Mareep, Flaaffy, Ampharos, AmpharosMega Ampharos, Elekid, " +
-                "Raikou, Electrike, Manectric, ManectricMega Manectric, Plusle, Minun, Shinx, " +
-                "Luxio, Luxray, Pachirisu, Magnezone, Electivire, Rotom, RotomHeat Rotom, RotomWash " +
-                "Rotom, RotomFrost Rotom, RotomFan Rotom, RotomMow Rotom, Blitzle, Zebstrika, Emolga, " +
-                "Joltik, Galvantula, Tynamo, Eelektrik, Eelektross, Stunfisk, ThundurusIncarnate Forme, " +
-                "ThundurusTherian Forme, Zekrom, Helioptile, Heliolisk, Dedenne]"
+        val searchTerm = "fire"
+         When calling pokemonRepository.findAllByType(searchTerm) itReturns listOf(
+                 Pokemon(1337, "name1", "fire","",1,1,1,1,1,1,1,1, false),
+                 Pokemon(1338, "name2", "fire","",1,1,1,1,1,1,1,1, false)
+         )
+        val result = pokemonService.search(searchTerm)
+        result shouldEqual "2 fire Pokémon\n[name1, name2]"
     }
 }

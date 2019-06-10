@@ -1,12 +1,10 @@
 package com.pokesearch
 
-class PokemonService {
+class PokemonService(private val pokemonRepository: PokemonRepository) {
 
     private val pokemonTypes = listOf("bug", "dragon", "ice", "fighting", "fire", "flying",
             "grass", "ghost", "ground", "electric", "normal", "poison", "psychic",
             "rock", "water", "dark", "steel", "fairy", "bird", "shadow")
-
-    private val pokemonRepository = PokemonRepository()
 
     fun search(searchTerm: String?): String {
         if (pokemonTypes.contains(searchTerm)) {
