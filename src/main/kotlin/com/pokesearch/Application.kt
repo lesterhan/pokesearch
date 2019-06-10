@@ -1,4 +1,4 @@
-package com.springdemo
+package com.pokesearch
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

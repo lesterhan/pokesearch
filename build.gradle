@@ -8,7 +8,7 @@ plugins {
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
-group = "com.vanillademo"
+group = "com.pokesearch"
 version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_1_8
 
@@ -31,6 +31,7 @@ dependencies {
 	testImplementation "org.junit.jupiter:junit-jupiter-api:5.4.2"
 	testImplementation "org.junit.platform:junit-platform-commons:1.4.1"
 	testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.4.2"
+	compile 'org.amshove.kluent:kluent:1.49'
 }
 
 sourceCompatibility = 1.8
