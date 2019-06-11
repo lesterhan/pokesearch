@@ -1,7 +1,9 @@
 package com.pokesearch
 
-class PokemonService(private val pokemonRepository: PokemonRepository) {
+import org.springframework.stereotype.Component
 
+@Component
+class PokemonService(val pokemonRepository: PokemonRepository) {
     private val pokemonTypes = listOf("bug", "dragon", "ice", "fighting", "fire", "flying",
             "grass", "ghost", "ground", "electric", "normal", "poison", "psychic",
             "rock", "water", "dark", "steel", "fairy", "bird", "shadow")

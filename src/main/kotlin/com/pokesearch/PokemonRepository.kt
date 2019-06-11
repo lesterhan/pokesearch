@@ -2,7 +2,9 @@ package com.pokesearch
 
 import com.data.Pokedex
 import com.data.Pokemon
+import org.springframework.stereotype.Repository
 
+@Repository
 class PokemonRepository {
     fun findByName(searchTerm: String?): Pokemon? {
         val cleanSearchTerm = cleanSearchTerm(searchTerm)
